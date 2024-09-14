@@ -38,9 +38,12 @@ public class DepartmentRepo {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        return new Department(resultSet.getInt(1),
-                resultSet.getString(2),
-                resultSet.getString(3));
+        if (resultSet.next()) {
+            return new Department(resultSet.getInt(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3));
+        }
+        return null;
     }
     public List<Department> getAllDepartments() throws SQLException {
         String query = "Select * from department";

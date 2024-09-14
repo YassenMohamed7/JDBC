@@ -46,7 +46,16 @@ public class Project {
         return dept_it;
     }
 
+
+
     public void setDept_it(int dept_it) {
         this.dept_it = dept_it;
     }
+
+    @Override
+    public String toString() {
+        return  String.format("Project %d{\n\tid=%d,\n\tname=%s,\n\tstartDate=%s,\n\tdepartmentId=%d\n}",id,  id, name, startDate, dept_it);
+    }
+
+
 }

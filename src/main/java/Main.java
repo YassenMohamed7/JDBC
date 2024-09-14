@@ -1,8 +1,10 @@
 import Models.Department;
 import Models.Employee;
+import Models.Project;
 import Repositories.DBConnection;
 import Repositories.DepartmentRepo;
 import Repositories.EmployeeRepo;
+import Repositories.ProjectRepo;
 
 import java.sql.*;
 import java.util.List;
@@ -46,12 +48,30 @@ public class Main {
         System.out.println("\n\n//////////////////////////////////////////////////////////\n");
 
         DepartmentRepo departmentRepo = new DepartmentRepo();
+
+        Department department = new Department(103, "CSE", "Menouf");
+        departmentRepo.insertDepartment(department);
         List<Department> departments = departmentRepo.getAllDepartments();
-        for (Department department : departments) {
-            System.out.println(department);
+        for (Department d : departments) {
+            System.out.println(d);
         }
 
+        System.out.println("After deleting department 103: ");
+        departmentRepo.deleteDepartment(103);
+        Department department103 = departmentRepo.getDepartment(103);
+        if(department103 == null){
+            System.out.println("Department 103 not found");
+        }else
+            System.out.println(department103);
 
+
+        System.out.println("//////////////////////////////////////////");
+
+
+        ProjectRepo projectRepo = new ProjectRepo();
+
+        List<Project>  projects = projectRepo.getAllProjects();
+        projects.forEach(System.out::println);
 
 
 

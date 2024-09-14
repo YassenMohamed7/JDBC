@@ -31,7 +31,7 @@ public class ProjectRepo {
 
     public List<Project> getAllProjects() throws SQLException {
         List<Project> projects = new ArrayList<>();
-        String query = "Select id, name, startDate, dept_id from project";
+        String query = "Select * from project";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next())
